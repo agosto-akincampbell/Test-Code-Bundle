@@ -1,0 +1,43 @@
+#Title {
+  text-align: center;
+  background-color: #1E90FF;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  color: white;
+}
+
+#out_one, #out_two, #out_three {
+  text-align: center;
+}
+
+#player {
+  text-align: center;
+  padding-top: 1em;
+}
+
+.one_style {
+  background-color: rgba(0, 255, 0, 0.3);
+}
+
+.two_style {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+.three_style {
+  background-color: rgba(0, 0, 255, 0.2);
+}
+
+.butt {
+  text-align: center;
+  padding-top: 2em;
+  padding-bottom: 1em;
+}
+
+.rmv-pad {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.add_pad {
+  padding-bottom: 1em;
+}
