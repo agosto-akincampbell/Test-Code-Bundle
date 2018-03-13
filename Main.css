@@ -41,3 +41,15 @@
 .add_pad {
   padding-bottom: 1em;
 }
+
+.back_one {
+  background-color: rgba(0, 255, 0, 0.3);
+}
+
+.back_two {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+.back_three {
+  background-color: rgba(0, 0, 255, 0.3);
+}

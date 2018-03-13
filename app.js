@@ -1,3 +1,8 @@
+/*Run Functions*/
+geoFindMe();
+getAtt();
+getVideo();
+
 //Geolocation
 function geoFindMe() {
   var output = document.getElementById("out_one");
