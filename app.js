@@ -3,16 +3,18 @@ geoFindMe();
 getAtt();
 getVideo();
 
-//Geolocation
+
+/*Geolocation*/
 function geoFindMe() {
   var output = document.getElementById("out_one");
-  var location = document.getElementById("location");
 
+  //Not Supported
   if (!navigator.geolocation){
     output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
     return;
   }
 
+  //Success
   function success(position) {
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
@@ -25,6 +27,7 @@ function geoFindMe() {
     output.appendChild(img);
   }
 
+  //Error
   function error() {
     output.innerHTML = "Unable to retrieve your location";
   }
@@ -33,11 +36,10 @@ function geoFindMe() {
 
   navigator.geolocation.getCurrentPosition(success, error);
 
-  location.classList.add("one_style");
-  output.classList.add("one_style");
 }
 
-//Attributes
+
+/*Attributes*/
 function getAtt() {
   fetch('/skDisplay', {
     //body: data,//JSON.stringify(data), // must match 'Content-Type' header
@@ -50,18 +52,15 @@ function getAtt() {
 
       console.log(response);
       response.json().then(function (data){
+        //Print key and value pair of attributes dictionary
         for (key in data){
           k_v = key + ": " + data[key];
           console.log(k_v);
           var output = document.getElementById("out_two");
-          var attributes = document.getElementById("attributes");
           output.innerHTML = k_v;
           attributes.classList.add("two_style");
           output.classList.add("two_style");
-
         }
-
-
       })
       //return response.json();
 
@@ -74,7 +73,8 @@ function getAtt() {
     });*/
 }
 
-//Video
+
+/*Video*/
 function getVideo() {
   const player = document.getElementById('player');
 
@@ -86,9 +86,5 @@ function getVideo() {
     .then((stream) => {
       player.srcObject = stream;
     });
-
   var output = document.getElementById("out_three");
-  var media = document.getElementById("media");
-  output.classList.add("three_style");
-  media.classList.add("three_style");
 }

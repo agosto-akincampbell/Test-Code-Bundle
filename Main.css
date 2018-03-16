@@ -1,9 +1,17 @@
 #Title {
   text-align: center;
-  background-color: #1E90FF;
+
+
+  background-color: red;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
+  margin-bottom: 2.5em;
   color: white;
+}
+
+.titl {
+  font-size: 3em;
+  font-weight: bold;
 }
 
 #out_one, #out_two, #out_three {
@@ -15,21 +23,9 @@
   padding-top: 1em;
 }
 
-.one_style {
-  background-color: rgba(0, 255, 0, 0.3);
-}
-
-.two_style {
-  background-color: rgba(255, 0, 0, 0.3);
-}
-
-.three_style {
-  background-color: rgba(0, 0, 255, 0.2);
-}
 
 .butt {
   text-align: center;
-  padding-top: 2em;
   padding-bottom: 1em;
 }
 
@@ -42,14 +38,12 @@
   padding-bottom: 1em;
 }
 
-.back_one {
-  background-color: rgba(0, 255, 0, 0.3);
+
+.space {
+  margin-right: 1.5em;
+  margin-left: 1.5em;
 }
 
-.back_two {
-  background-color: rgba(255, 0, 0, 0.3);
-}
-
-.back_three {
-  background-color: rgba(0, 0, 255, 0.3);
+.bord {
+  border: 10px solid red;
 }
