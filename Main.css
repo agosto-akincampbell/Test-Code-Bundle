@@ -1,3 +1,7 @@
+h1 {
+  text-align: center;
+}
+
 #Title {
   text-align: center;
 
@@ -45,5 +49,6 @@
 }
 
 .bord {
-  border: 10px solid red;
+  background-color: red;
+  color: white;
 }

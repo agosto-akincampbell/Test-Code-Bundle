@@ -2,6 +2,7 @@
 geoFindMe();
 getAtt();
 getVideo();
+onlineStatus();
 
 
 /*Geolocation*/
@@ -87,4 +88,18 @@ function getVideo() {
       player.srcObject = stream;
     });
   var output = document.getElementById("out_three");
+}
+
+/*Online Status*/
+function onlineStatus() {
+  online = window.navigator.onLine;
+  var output = document.getElementById("out_four");
+  var xmark = new Image();
+  var check = new Image();
+  check.src = "check.png";
+  xmark.src = "xmark.png";
+
+
+  window.addEventListener('offline', function(e) { output.appendChild(xmark); output.removeChild(check)});
+  window.addEventListener('online', function(e) { output.appendChild(check); output.removeChild(xmark)});
 }

@@ -6,3 +6,5 @@ Special code bundle for QA that would show all the display variables and ask for
 1) Display all attributes that the code bundle can get
 2) Get geolocation / info from geolocation api and display it
 3) Use media api
+4-) Show Local storage
+5-) Online Status
