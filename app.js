@@ -92,13 +92,18 @@ function getVideo() {
 
 /*Online Status*/
 function onlineStatus() {
-  online = window.navigator.onLine;
   var output = document.getElementById("out_four");
   var xmark = new Image();
   var check = new Image();
   check.src = "check.png";
   xmark.src = "xmark.png";
-
+  online = window.navigator.onLine;
+  if (online){
+    output.appendChild(check);
+  }
+  else {
+    output.appendChild(xmark);
+  }
 
   window.addEventListener('offline', function(e) { output.appendChild(xmark); output.removeChild(check)});
   window.addEventListener('online', function(e) { output.appendChild(check); output.removeChild(xmark)});

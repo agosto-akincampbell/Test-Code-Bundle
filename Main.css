@@ -18,7 +18,7 @@ h1 {
   font-weight: bold;
 }
 
-#out_one, #out_two, #out_three {
+#out_one, #out_two, #out_three, #out_four{
   text-align: center;
 }
 
@@ -40,6 +40,10 @@ h1 {
 
 .add_pad {
   padding-bottom: 1em;
+}
+
+.add_top_pad {
+  padding-top: 2em;
 }
 
 
