@@ -1,9 +1,19 @@
+/*Global Variables*/
+const dbName = "test";
+var db;
+
 /*Run Functions*/
 geoFindMe();
 getAtt();
 getVideo();
 onlineStatus();
-localStorage();
+localStorage().then(function(response) {
+  db = response;
+  saveData(db);
+  //getDate(db);
+  setTimeout(getDate(db),100000);
+
+});
 
 
 /*Geolocation*/
@@ -114,34 +124,68 @@ function onlineStatus() {
 
 /*Local Storage*/
 function localStorage() {
-  const dbName = "test";
+  return new Promise ( function(resolve,reject){
 
-  var request = indexedDB.open(dbName, 2);
+    var db;
+    var request = indexedDB.open(dbName, 2);
 
-  request.onerror = function(event) {
-    // Handle errors.
-  };
-  request.onupgradeneeded = function(event) {
-  var db = event.target.result;
+    request.onerror = function(event) {
+      reject(event);
+    };
 
-  // Create an objectStore to hold information about our customers. We're
-  // going to use "ssn" as our key path because it's guaranteed to be
-  // unique - or at least that's what I was told during the kickoff meeting.
-  var objectStore = db.createObjectStore("date", { keyPath: "dt" });
+    request.onupgradeneeded = function(event) {
+      db = event.target.result;
 
-  // Create an index to search customers by name. We may have duplicates
-  // so we can't use a unique index.
-  objectStore.createIndex("time", "time", { unique: false });
+    // Create an objectStore to hold information about our customers. We're
+    // going to use "ssn" as our key path because it's guaranteed to be
+    // unique - or at least that's what I was told during the kickoff meeting.
+      var objectStore = db.createObjectStore("date");
 
 
-  // Use transaction oncomplete to make sure the objectStore creation is
-  // finished before adding data into it.
-  objectStore.transaction.oncomplete = function(event) {
-    // Store values in the newly created objectStore.
-    var customerObjectStore = db.transaction("date", "readwrite").objectStore("date");
-    customerData.forEach(function(customer) {
-      customerObjectStore.add(customer,1);
-    });
-  };
-};
+
+    // Use transaction oncomplete to make sure the objectStore creation is
+    // finished before adding data into it.
+    objectStore.transaction.oncomplete = function(event) {
+      console.log(db);
+
+    //};
+
+    };
+    request.onsuccess = function(event){
+      resolve(db);
+    }
+  }
+})
+}
+
+function displayDate(date) {
+    var format_date = new Date(date);
+    var current_date = new Date(Date.now());
+    console.log(current_date);
+    console.log(format_date);
+}
+
+function saveData(db) {
+  // Store values in the newly created objectStore.
+  var customerObjectStore = db.transaction("date", "readwrite").objectStore("date");
+    customerObjectStore.add(Date.now(),1);
+}
+
+function getDate(db){
+  var transaction = db.transaction("date");
+  var objectStore = transaction.objectStore("date");
+  var request = objectStore.get(1);
+  request.onerror = function(event){
+    alert("Error");
+  }
+  request.onsuccess = function(event){
+    if (request.result){
+      var difference = Date.now() - request.result;
+      console.log(difference);
+      if (difference > 1800000){
+        saveData();
+      }
+      displayDate(request.result);
+    }
+  }
 }
