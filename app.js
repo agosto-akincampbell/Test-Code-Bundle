@@ -11,7 +11,8 @@ localStorage().then(function(response) {
   db = response;
   saveData(db);
   //getDate(db);
-  setTimeout(getDate(db),100000);
+
+  setTimeout(() =>{console.log("ten seconds");getDate();},10000);
 
 });
 
@@ -161,6 +162,8 @@ function localStorage() {
 function displayDate(date) {
     var format_date = new Date(date);
     var current_date = new Date(Date.now());
+    var output = document.getElementById("out_five");
+    output.innerHTML = '<h3><br><br><br>Saved date: ' + format_date + '<br><br><br>Current date: ' + current_date + '</h3>';
     console.log(current_date);
     console.log(format_date);
 }
@@ -171,7 +174,7 @@ function saveData(db) {
     customerObjectStore.add(Date.now(),1);
 }
 
-function getDate(db){
+function getDate(){
   var transaction = db.transaction("date");
   var objectStore = transaction.objectStore("date");
   var request = objectStore.get(1);
@@ -180,7 +183,8 @@ function getDate(db){
   }
   request.onsuccess = function(event){
     if (request.result){
-      var difference = Date.now() - request.result;
+      var current_time = Date.now();
+      var difference = current_time - request.result;
       console.log(difference);
       if (difference > 1800000){
         saveData();
